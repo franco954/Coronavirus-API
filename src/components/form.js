@@ -1,30 +1,40 @@
+import React, { useState } from "react";
 
-
-
-import React from "react";
-
-import { Button, TextField } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
+import { Button, Input } from "@material-ui/core";
 
 export default function Form() {
 
-    const Input = styled(TextField)({
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-        height: 48,
-        padding: '0 30px',
-      });
 
+  const [pais, setPais] = useState("Argentina")
 
+  console.log(pais)
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const paisBuscar = pais;
+    console.log(paisBuscar)
+  };
+
+  const handleChange = (e) => {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+    setPais(value);
+  };
 
   return (
-    
-    <Input noValidate autoComplete="off">
-      <TextField id="filled-basic" label="PAIS" variant="filled" />
-    </Input>
+  <form onSubmit={handleSubmit}>
+      <Input 
+      value={pais}
+      name="pais"
+      onChange={handleChange}
+      margin="dense" 
+      color="secondary" 
+      variant="outlined" />
+      <Button color="secondary" variant="contained" type="submit">
+        Buscar
+      </Button>
+    </form>
   
   
   );

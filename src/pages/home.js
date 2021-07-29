@@ -15,20 +15,27 @@ export default function Home(){
         confirmados: 0,
         recuperados: 0,
         muertes: 0,
+        capital: '',
+        pais: '',
+        locacion: '',
+        poblacion: '',
+        experanzaVida: 0,
     })
     console.log(data)
 
-    const country = "Spain" 
-
-
     const getData = async () =>{
         try {
-            const response = await cases(country)
+            const response = await cases("Uruguay")
             console.log(response.data.All)
             setData({
                 confirmados: response.data.All.confirmed,
                 recuperados: response.data.All.recovered,
                 muertes: response.data.All.deaths,
+                capital: response.data.All.capital_city,
+                pais: response.data.All.country,
+                locacion: response.data.All.location,
+                poblacion: response.data.All.population,
+                experanzaVida: response.data.All.life_expectancy,
             })
         } catch (error) {
             console.error(error)
@@ -44,9 +51,9 @@ export default function Home(){
 
     return(
         <div>
-            <h1>Coronavirus {country}</h1>
-            <Info {...data}/>
+            <h1>Coronavirus </h1>
             <Form/>
+            <Info {...data}/>
         </div>
     )
 }
