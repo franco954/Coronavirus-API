@@ -7,9 +7,16 @@ import React from 'react';
 
 export default function Info(props){
 
-    console.log(props)
-
     const {confirmados, recuperados, muertes, pais, capital, experanzaVida, locacion, poblacion} = props
+
+
+
+    const handleClick = () =>{
+        
+    }
+
+
+
     
     return(
         <div>
@@ -23,6 +30,9 @@ export default function Info(props){
             <p> <b>Capital: </b> {capital} </p> 
             <p> <b>Poblacion: </b> {poblacion} </p> 
             <p> <b>Experanza de vida: </b> {experanzaVida} </p> 
+            <button onClick={handleClick}>
+                Volver al buscador    
+            </button>
         </div>
     )
 }

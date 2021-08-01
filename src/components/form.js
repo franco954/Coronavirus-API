@@ -2,17 +2,16 @@ import React, { useState } from "react";
 
 import { Button, Input } from "@material-ui/core";
 
-export default function Form() {
+export default function Form(props) {
 
 
   const [pais, setPais] = useState("Argentina")
 
-  console.log(pais)
+  console.log(props.data)
 
   const handleSubmit = e => {
     e.preventDefault();
-    const paisBuscar = pais;
-    console.log(paisBuscar)
+    props.data(pais)
   };
 
   const handleChange = (e) => {
