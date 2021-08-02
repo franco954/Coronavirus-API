@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 
-import { Button, Input } from "@material-ui/core";
+// material ui
+import { Button, Input, Grid, Paper } from "@material-ui/core";
 
 export default function Form(props) {
+  const [pais, setPais] = useState("Argentina");
 
+  console.log(props.data);
 
-  const [pais, setPais] = useState("Argentina")
-
-  console.log(props.data)
-
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    props.data(pais)
+    props.data(pais);
   };
 
   const handleChange = (e) => {
@@ -22,19 +21,31 @@ export default function Form(props) {
   };
 
   return (
-  <form onSubmit={handleSubmit}>
-      <Input 
-      value={pais}
-      name="pais"
-      onChange={handleChange}
-      margin="dense" 
-      color="secondary" 
-      variant="outlined" />
-      <Button color="secondary" variant="contained" type="submit">
-        Buscar
-      </Button>
+    <form onSubmit={handleSubmit}>
+      <Grid container>
+        <Grid item xs={12}>
+          <Input
+            autoComplete="off"
+            value={pais}
+            name="pais"
+            onChange={handleChange}
+            margin="dense"
+            color="primary"
+            variant="contained"
+            xs={12}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            color="secondary"
+            variant="outlined"
+            type="submit"
+            size="large"
+          >
+            Buscar
+          </Button>
+        </Grid>
+      </Grid>
     </form>
-  
-  
   );
 }
