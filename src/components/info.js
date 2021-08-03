@@ -27,7 +27,7 @@ export default function Info(props) {
       flexGrow: 1,
     },
     paper: {
-      background: "#48f8",
+      background: "#fffc",
       padding: theme.spacing(3),
       textAlign: "center",
       color: theme.palette.text.primary,
@@ -53,27 +53,22 @@ export default function Info(props) {
         <Grid className={classes.center} item xs={12}>
             <h1>Coronavirus en {pais}</h1>
         </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12}>
         <Paper className={classes.paper}>
           <b>Confirmados: </b> {confirmados}
         </Paper>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12}>
         <Paper className={classes.paper}>
           <b>Recuperados: </b> {recuperados}
         </Paper>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12}>
         <Paper className={classes.paper}>
           <b>Muertos: </b> {muertes}
         </Paper>
       </Grid>
-      <Grid item xs={6} sm={6}>
-        <Paper className={classes.paper}>
-          <b>Capital pais: </b> {capital}
-        </Paper>
-      </Grid>
-      <Grid item xs={6} sm={6}>
+      <Grid item xs={12}>
         <Paper className={classes.paper}>
           <b>Población total: </b> {poblacion}
         </Paper>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Form from "../components/form";
 import Info from "../components/info";
 import Loading from "../components/loading";
@@ -15,6 +15,8 @@ import { cases } from "../services/cases";
 
 export default function Home() {
 
+  const context = useContext(CoronavirusContext)
+
   const [data, setData] = useState({
     confirmados: 0,
     recuperados: 0,
@@ -28,6 +30,10 @@ export default function Home() {
   console.log(data);
 
   const getData = async (query) => {
+    context.setFormF(true);
+    context.setErrorF(false);
+    context.setInfoF(false);
+    context.setLoadingF(true);
     try {
       const response = await cases(query);
       console.log(response);
@@ -42,9 +48,17 @@ export default function Home() {
           poblacion: response.data.All.population,
           experanzaVida: response.data.All.life_expectancy,
         });
+        context.setErrorF(false);
+        context.setInfoF(true);
+        context.setFormF(false);
       } catch (error) {
+        context.setErrorF(true);
+        context.setInfoF(false);
+        context.setFormF(true);
       }
+      context.setLoadingF(false);
     } catch (error) {
+      context.setLoadingF(false);
       console.error(error);
     }
   };
