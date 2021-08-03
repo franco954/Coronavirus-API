@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 
 // material ui
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Grid, Button } from "@material-ui/core";
 
+// context api
+import CoronavirusContext from "../Context/CoronavirusContext";
+
 export default function Info(props) {
+
+  const context = useContext(CoronavirusContext)
+
   const {
     confirmados,
     recuperados,
@@ -33,10 +39,15 @@ export default function Info(props) {
 
   const classes = useStyles();
 
-  const handleClick = () => {   
-      props.f()
-  };
-
+  const handleBack = () =>{
+    context.setLoadingF(true)
+    context.setInfoF(false)
+    context.setFormF(true)
+    context.setLoadingF(false)
+    console.log(context)
+  }
+  
+ 
   return (
     <Grid container spacing={3}>
         <Grid className={classes.center} item xs={12}>
@@ -68,7 +79,7 @@ export default function Info(props) {
         </Paper>
       </Grid>
       <Grid className={classes.center} item sm={12}>
-            <Button variant="contained" color="primary" onClick={handleClick}>Volver al buscador</Button>
+            <Button variant="contained" onClick={handleBack} color="primary">Volver al buscador</Button>
       </Grid>
     </Grid>
   );

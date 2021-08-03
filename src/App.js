@@ -2,13 +2,15 @@ import './App.css';
 
 
 import Home from './pages/home';
-
+import GlobalState from './Context/GlobalState';
 
 function App() {
   return (
-    <div className="App"> 
-      <Home/>
-    </div>
+    <GlobalState>
+      <div className="App"> 
+        <Home/>
+      </div>
+    </GlobalState>
   );
 }
 

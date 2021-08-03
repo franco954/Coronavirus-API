@@ -4,6 +4,9 @@ import Info from "../components/info";
 import Loading from "../components/loading";
 import Error from "../components/error";
 
+// context api
+import CoronavirusContext from "../Context/CoronavirusContext";
+
 // material ui
 import Grid from "@material-ui/core/Grid";
 
@@ -11,10 +14,6 @@ import Grid from "@material-ui/core/Grid";
 import { cases } from "../services/cases";
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
-  const [info, setInfo] = useState(false);
-  const [form, setForm] = useState(true);
-  const [error, setError] = useState(false);
 
   const [data, setData] = useState({
     confirmados: 0,
@@ -28,18 +27,7 @@ export default function Home() {
   });
   console.log(data);
 
-  const backForm = () =>{
-      setLoading(true)
-      setInfo(false)
-      setForm(true)
-      setLoading(false)
-  }
-
   const getData = async (query) => {
-    setForm(true);
-    setError(false);
-    setInfo(false);
-    setLoading(true);
     try {
       const response = await cases(query);
       console.log(response);
@@ -54,38 +42,38 @@ export default function Home() {
           poblacion: response.data.All.population,
           experanzaVida: response.data.All.life_expectancy,
         });
-        setError(false);
-        setInfo(true);
-        setForm(false);
       } catch (error) {
-        setError(true);
-        setInfo(false);
-        setForm(true);
       }
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
       console.error(error);
     }
   };
 
   return (
-    <Grid
-      container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justify="center"
-      style={{ minHeight: "100vh" }}
-    >
-      <Grid item xs={6} spacing={3}>
-        {form && <Form data={getData} />}
-        {info && <Info {...data} f={backForm} />}
-      </Grid>
-      <Grid item xs={6} spacing={3}>
-        {loading && <Loading />}
-        {error && <Error />}
-      </Grid>
-    </Grid>
+
+    <CoronavirusContext.Consumer>
+      { context =>
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: "100vh" }}
+        >
+          <Grid item xs={6} spacing={3}>
+            {context.form && <Form data={getData} />}
+            {context.info && <Info {...data} />}
+          </Grid>
+          <Grid item xs={6} spacing={3}>
+            {context.loading && <Loading />}
+            {context.error && <Error />}
+          </Grid>
+        </Grid>
+
+      }
+    </CoronavirusContext.Consumer>
+  
   );
+
 }
