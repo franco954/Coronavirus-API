@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/styles/background.css"],"names":[],"mappings":"AAEA,KACI,kEAAmD,CACnD,2BAA4B,CAC5B,2BAA4B,CAC5B,qBACJ","file":"main.858c3e40.chunk.css","sourcesContent":["\n\nbody{\n    background-image: url(\"../images/background1.jpeg\");\n    background-repeat: no-repeat;\n    background-attachment: fixed;\n    background-size: cover;\n}"]}
