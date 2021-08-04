@@ -75,11 +75,11 @@ export default function Home() {
           justify="center"
           style={{ minHeight: "100vh" }}
         >
-          <Grid item xs={6} spacing={3}>
+          <Grid item>
             {context.form && <Form data={getData} />}
             {context.info && <Info {...data} />}
           </Grid>
-          <Grid item xs={6} spacing={3}>
+          <Grid item>
             {context.loading && <Loading />}
             {context.error && <Error />}
           </Grid>

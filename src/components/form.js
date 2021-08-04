@@ -2,10 +2,39 @@ import React, { useState } from "react";
 
 // material ui
 import { Button, Input, Grid, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 export default function Form(props) {
-  const [pais, setPais] = useState("Argentina");
 
+
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      // width: "100vw",
+      background: "#000b",
+      padding: "15px 50px",
+      textAlign: "center",
+      borderRadius: "18px",
+    },
+    center: {
+      textAlign: "center",
+    },
+    title: {
+      textAlign: "center",
+      color: "#f00c",
+    },
+    input: {
+      paddingTop: "20px", 
+      color: "#ddd",
+      borderBottom: "2px solid #f008"
+    },
+    button: {
+      paddingTop: "80px"
+    }
+  }));
+
+  const classes = useStyles();
+
+  const [pais, setPais] = useState("");
   console.log(props.data);
 
   const handleSubmit = (e) => {
@@ -17,35 +46,42 @@ export default function Form(props) {
     const target = e.target;
     const value = target.value;
     const name = target.name;
-    setPais(value);
+    const valueUpperCase = value.charAt(0).toUpperCase() + value.slice(1);
+    console.log(valueUpperCase)
+    setPais(valueUpperCase);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Grid container>
-        <Grid item xs={12}>
-          <Input
-            autoComplete="off"
-            value={pais}
-            name="pais"
-            onChange={handleChange}
-            margin="dense"
-            color="primary"
-            variant="contained"
-            xs={12}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            color="secondary"
-            variant="outlined"
-            type="submit"
-            size="large"
-          >
-            Buscar
-          </Button>
-        </Grid>
-      </Grid>
-    </form>
+      <Paper elevation={20} className={classes.paper} >
+        <form onSubmit={handleSubmit}>
+          <Grid item>
+              <h1 className={classes.title}>Coronavirus API</h1>
+          </Grid>
+          <Grid item>
+            <Input
+
+              required="on"
+              placeholder="Introduce un pais"
+              className={classes.input}
+              autoComplete="off"
+              value={pais}
+              name="pais"
+              onChange={handleChange}
+              margin="dense"
+              color="secondary"
+              variant="contained"
+            />
+          </Grid>
+          <Grid item className={classes.button}>
+            <Button
+              color="secondary"
+              variant="contained"
+              type="submit"
+            >
+              Buscar
+            </Button>
+          </Grid>
+        </form>
+      </Paper>
   );
 }
