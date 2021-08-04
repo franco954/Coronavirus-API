@@ -17,9 +17,6 @@ export default function Info(props) {
     recuperados,
     muertes,
     pais,
-    capital,
-    experanzaVida,
-    locacion,
     poblacion,
   } = props;
 

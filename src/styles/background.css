@@ -2,7 +2,4 @@
 
 body{
     background-image: url("../images/background1.jpeg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
 }
