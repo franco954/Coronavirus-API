@@ -59,7 +59,6 @@ export default function Form(props) {
           </Grid>
           <Grid item>
             <Input
-
               required="on"
               placeholder="Introduce un pais"
               className={classes.input}

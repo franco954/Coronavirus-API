@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 // material ui
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Grid, Button } from "@material-ui/core";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 // context api
 import CoronavirusContext from "../Context/CoronavirusContext";
@@ -23,17 +24,34 @@ export default function Info(props) {
   } = props;
 
   const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
     paper: {
-      background: "#fffc",
-      padding: theme.spacing(3),
+      background: "#000b",
+      padding: "20px 50px",
       textAlign: "center",
-      color: theme.palette.text.primary,
+      borderRadius: "18px",
     },
     center: {
-        textAlign: "center",
+      textAlign: "center",
+    },
+    title: {
+      textAlign: "center",
+      color: "#f00c",
+    },
+    input: {
+      paddingTop: "20px", 
+      color: "#ddd",
+      borderBottom: "2px solid #f008"
+    },
+    button: {
+      paddingTop: "20px",
+    },
+    icon:{
+      paddingRight: "14px",
+    },
+    datos:{
+      margin: "1px",
+      color: "#fff",
+      fontSize: "1.2em",
     }
   }));
 
@@ -50,32 +68,20 @@ export default function Info(props) {
  
   return (
     <Grid container spacing={3}>
-        <Grid className={classes.center} item xs={12}>
+      <Paper elevation={20} className={classes.paper} >
+        <Grid className={classes.title} item xs={12}>
             <h1>Coronavirus en {pais}</h1>
         </Grid>
-      <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          <b>Confirmados: </b> {confirmados}
-        </Paper>
+      <Grid item xs={12} className={classes.datos}>
+         <p> <b>Confirmados: </b> {confirmados} </p> 
+         <p> <b>Recuperados: </b> {recuperados} </p> 
+         <p> <b>Muertos: </b> {muertes} </p> 
+         <p> <b>Población total: </b> {poblacion} </p> 
       </Grid>
-      <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          <b>Recuperados: </b> {recuperados}
-        </Paper>
+      <Grid className={classes.button} item sm={12}>
+            <Button variant="contained" onClick={handleBack} color="secondary"><ArrowBackIcon className={classes.icon}/> Volver al buscador</Button>
       </Grid>
-      <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          <b>Muertos: </b> {muertes}
-        </Paper>
-      </Grid>
-      <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          <b>Población total: </b> {poblacion}
-        </Paper>
-      </Grid>
-      <Grid className={classes.center} item sm={12}>
-            <Button variant="contained" onClick={handleBack} color="primary">Volver al buscador</Button>
-      </Grid>
+      </Paper>
     </Grid>
   );
 }
