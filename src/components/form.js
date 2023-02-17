@@ -35,7 +35,6 @@ export default function Form(props) {
   const classes = useStyles();
 
   const [pais, setPais] = useState("");
-  console.log(props.data);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,9 +44,7 @@ export default function Form(props) {
   const handleChange = (e) => {
     const target = e.target;
     const value = target.value;
-    const name = target.name;
     const valueUpperCase = value.charAt(0).toUpperCase() + value.slice(1);
-    console.log(valueUpperCase)
     setPais(valueUpperCase);
   };
 
